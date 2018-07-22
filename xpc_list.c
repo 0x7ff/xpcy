@@ -77,5 +77,6 @@ main(void)
 				}
 			}
 		}
+		dlclose(handle);
 	}
 }
