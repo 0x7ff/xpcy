@@ -38,14 +38,12 @@ typedef struct {
 } xpc_sym_t;
 
 static inline uint32_t
-extract32(uint32_t value, unsigned start, unsigned length)
-{
+extract32(uint32_t value, unsigned start, unsigned length) {
 	return (value >> start) & (~0u >> (32u - length));
 }
 
 static inline uint64_t
-sextract64(uint64_t value, unsigned start, unsigned length)
-{
+sextract64(uint64_t value, unsigned start, unsigned length) {
 	return (uint64_t)((int64_t)(value << (64u - length - start)) >> (64u - length));
 }
 
@@ -86,7 +84,7 @@ find_section_type(const struct segment_command_64 *sgp, uint8_t type) {
 		if((sp->flags & SECTION_TYPE) == type) {
 			return sp;
 		}
-		sp++;
+		++sp;
 	}
 	return NULL;
 }
@@ -100,7 +98,7 @@ find_section_name(const struct segment_command_64 *sgp, const char *sect_name) {
 		if(!strncmp(sp->segname, sgp->segname, sizeof(sp->segname)) && !strncmp(sp->sectname, sect_name, sizeof(sp->sectname))) {
 			return sp;
 		}
-		sp++;
+		++sp;
 	}
 	return NULL;
 }
